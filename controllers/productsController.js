@@ -66,14 +66,12 @@ export async function UpdateCarrinho(req, res){
 	}
 }
 
-/*
-_id
-titulo
-imagem
-preco
-
-_id
-usuarioId
-produtoId
-quantidade
-*/
+export async function DeleteCarrinho(req, res){
+	const {carrinho} = req.headers;
+	try {
+		await db.collection("carrinho").deleteMany({carrinhoId: carrinho});
+		res.sendStatus(200);
+	} catch (error) {
+		return res.status(500).send(error);
+	}
+}

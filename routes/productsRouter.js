@@ -1,5 +1,5 @@
 import express from 'express';
-import {RetornaProdutos, AdicionaCarrinho, RetornaCarrinho, UpdateCarrinho} from '../controllers/productsController.js';
+import {RetornaProdutos, AdicionaCarrinho, RetornaCarrinho, UpdateCarrinho, DeleteCarrinho} from '../controllers/productsController.js';
 import {validaCarrinhoToken, validaProdutoId, validaCarrinhoUpdate} from '../middlewares/productsMiddleware.js';
 
 const router = express.Router();
@@ -7,5 +7,6 @@ const router = express.Router();
 router.get('/produtos', validaCarrinhoToken, RetornaProdutos);
 router.get('/carrinho', validaCarrinhoToken, RetornaCarrinho);
 router.post('/carrinho', validaCarrinhoToken, validaProdutoId, AdicionaCarrinho);
+router.delete('/carrinho', validaCarrinhoToken, DeleteCarrinho);
 router.post('/updatecarrinho', validaCarrinhoUpdate, UpdateCarrinho);
 export default router;
